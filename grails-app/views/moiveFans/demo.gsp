@@ -15,6 +15,7 @@
 <body>
 <g:form action="showMovieFans" method="post">
     请输入豆瓣电影URL：<input name="url" placeholder="请输入短评起始页"/>
+    请输入抓取页数: <input name="pageCount"/>
     <g:submitButton name="确定"/>
 </g:form>
 </body>
