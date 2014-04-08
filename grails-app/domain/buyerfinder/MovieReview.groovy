@@ -6,6 +6,7 @@ class MovieReview {
     String userName
     String homePage
     String score
+    String content
     Date reviewDate
 
     static constraints = {

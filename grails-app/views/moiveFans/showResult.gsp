@@ -20,6 +20,7 @@
         <th>评论者</th>
         <th>个人主页</th>
         <th>分数</th>
+        <th>评论内容</th>
         <th>评论时间</th>
     </tr>
     <g:each in="${movieReviewList}" var="moviewReview">
@@ -28,6 +29,7 @@
                 <td>${moviewReview.userName}</td>
                 <td>${moviewReview.homePage}</td>
                 <td>${moviewReview.score}</td>
+                <td>${moviewReview.content}</td>
                 <td><g:formatDate date="${moviewReview.reviewDate}" format="yyyy-MM-dd"/> </td>
             </tr>
         </g:if>
@@ -36,6 +38,7 @@
                 <td>${moviewReview.userName}</td>
                 <td>${moviewReview.homePage}</td>
                 <td>${moviewReview.score}</td>
+                <td>${moviewReview.content}</td>
                 <td><g:formatDate date="${moviewReview.reviewDate}" format="yyyy-MM-dd"/></td>
             </tr>
         </g:elseif>
@@ -44,6 +47,7 @@
                 <td>${moviewReview.userName}</td>
                 <td>${moviewReview.homePage}</td>
                 <td>${moviewReview.score}</td>
+                <td>${moviewReview.content}</td>
                 <td><g:formatDate date="${moviewReview.reviewDate}" format="yyyy-MM-dd"/></td>
             </tr>
         </g:else>

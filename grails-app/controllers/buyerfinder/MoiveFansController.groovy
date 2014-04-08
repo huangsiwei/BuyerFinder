@@ -1,15 +1,21 @@
 package buyerfinder
 import moviefan.MovieFanService
+import senddoumail.SendDouMailService
 
 class MoiveFansController {
 
     MovieFanService movieFanService
+    SendDouMailService sendDouMailService
 
     def index() {
         redirect(action: "demo")
     }
 
     def demo() {
+    }
+
+    def testLogin() {
+        sendDouMailService.testLogin()
     }
 
     def showMovieFans() {

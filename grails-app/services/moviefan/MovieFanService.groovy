@@ -14,18 +14,19 @@ class MovieFanService {
             nextPageURL = basicURL + nextPage
             println(nextPageURL)
             def movieName = document.select("#content").select("h1").html().split(" ")[0]
-            def commentInstanceList = document.select(".comment-info")
+            def commentInstanceList = document.select(".comment-item")
             commentInstanceList.each { commentInstance ->
                 MovieReview movieReview = new MovieReview()
-                movieReview.userName = commentInstance.childNodes()[1].childNodes()[0]
-                movieReview.homePage = commentInstance.childNodes()[1].attr("href").replaceAll("movie","www")
-                if (commentInstance.childNodes()[3].attr("title")) {
-                    movieReview.score = commentInstance.childNodes()[3].attr("title")
+                movieReview.userName = commentInstance.select("a").attr("title")
+                movieReview.homePage = commentInstance.select("a").attr("href")
+                if (commentInstance.select(".comment span").attr("title")) {
+                    movieReview.score = commentInstance.select(".comment h3 .comment-info").select("span").attr("title")
                 } else {
                     movieReview.score = "未评分"
                 }
-                if (commentInstance.childNodes()[5]) {
-                    movieReview.reviewDate = Date.parse("yyyy-MM-dd",commentInstance.childNodes()[5].childNodes()[0].toString().replaceAll(" ",""))
+                movieReview.content = commentInstance.select("p").html()
+                if (commentInstance.select(".comment h3 .comment-info").select("span")[2]) {
+                    movieReview.reviewDate = Date.parse("yyyy-MM-dd",commentInstance.select(".comment h3 .comment-info").select("span")[2].html())
                 } else {
                     movieReview.reviewDate
                 }
