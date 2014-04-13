@@ -24,13 +24,16 @@ class AlbumService {
         def douMailURLList = []
         photoPageList.each { pohotPage ->
             Document document = Jsoup.connect(pohotPage).get()
-            userList << document.select(".content .author a").attr("href")
+            document.select(".content .author a").each { userRawURL ->
+                userList << userRawURL.attr("href")
+            }
         }
         userList.each { String userURL ->
             Document document = Jsoup.connect(userURL).get()
-            def userPhotoURL = document.select("#profile .infobox .bd img").attr("src").split("icon/u")
+            def userPhotoURL = document.select("#profile .infobox .bd img").attr("src").split("icon/ul")
             if (userPhotoURL.size()==2) {
-                String userId = document.select("#profile .infobox .bd img").attr("src").split("icon/ul")[1].split("-")[0]
+                println(userPhotoURL)
+                String userId = userPhotoURL[1].split("-")[0]
                 def douMailURL = "http://www.douban.com/doumail/write?to=" + userId
                 douMailURLList << douMailURL
             }
