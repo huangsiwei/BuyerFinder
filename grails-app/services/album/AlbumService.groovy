@@ -5,15 +5,25 @@ import org.jsoup.nodes.Document
 
 class AlbumService {
 
-    def getPhotoPageList(String albumURL) {
-        Document document = Jsoup.connect(albumURL).timeout(10000).get()
-        def albumName = document.select("#content .info h1").html()
-        def photoPageRawList = document.select(".photolst .photo_wrap a")
+    def countAlbumPageNum (String albumId) {
+        String albumURL = "http://www.douban.com/photos/album/" + albumId
+        Document document = Jsoup.connect(albumURL).get()
+        def pageCount = document.select(".paginator .count").html()
+        pageCount = Math.floor(pageCount.replaceAll("[^\\d]+","").toInteger()/18).toInteger()
+        return pageCount
+    }
+
+    def getPhotoPageList(String albumId,int pageCount) {
         def photoPageList = []
-        photoPageRawList.each { photoPage ->
-            String pageURL = photoPage.attr("href")
-            if (!pageURL.contains("#comments")){
-                photoPageList << pageURL
+        (0..pageCount).each {
+            String albumURL = "http://www.douban.com/photos/album/" + albumId +"/?start=" + it*18
+            Document document = Jsoup.connect(albumURL).get()
+            def photoPageRawList = document.select(".photolst .photo_wrap a")
+            photoPageRawList.each { photoPage ->
+                String pageURL = photoPage.attr("href")
+                if (!pageURL.contains("#comments")){
+                    photoPageList << pageURL
+                }
             }
         }
         return photoPageList

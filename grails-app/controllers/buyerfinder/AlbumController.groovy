@@ -14,8 +14,9 @@ class AlbumController {
     }
 
     def showReviewer() {
-        String albumURL = "http://www.douban.com/photos/album/" + params.albumId
-        def photoPageList =  albumService.getPhotoPageList(albumURL)
+        String albumId = params.albumId
+        int pageCount = albumService.countAlbumPageNum(albumId)
+        def photoPageList =  albumService.getPhotoPageList(albumId,pageCount)
         def douMailList = albumService.getDouMailURL(photoPageList)
         [douMailList:douMailList]
     }
