@@ -11,10 +11,10 @@ class BookService {
         def favReaderDouMailList = []
         String selector = "#collections_tab .sub_ins tr"
         (0..(endPage - startPage)).each {
-            collectionsURLList << defBookURL+it*20
+            collectionsURLList << defBookURL + (it + startPage - 1) * 20
         }
         collectionsURLList.each { collectionsURL->
-            Document document = Jsoup.connect(collectionsURL).timeout(10000).get()
+            Document document = Jsoup.connect(collectionsURL).get()
             def readerDocList = document.select(selector)
             readerDocList.each { readerDoc ->
                 if (readerDoc.select("[title=力荐]")||readerDoc.select("[title=推荐]")){
