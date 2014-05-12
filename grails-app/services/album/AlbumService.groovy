@@ -1,9 +1,12 @@
 package album
 
+import common.CommonService
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
 class AlbumService {
+
+    CommonService commonService
 
     def countAlbumPageNum (String albumId) {
         String albumURL = "http://www.douban.com/photos/album/" + albumId
@@ -17,6 +20,7 @@ class AlbumService {
         def photoPageList = []
         (0..pageCount).each {
             String albumURL = "http://www.douban.com/photos/album/" + albumId +"/?start=" + it*18
+            commonService.sleepRandomTime(500,2500)
             Document document = Jsoup.connect(albumURL).get()
             def photoPageRawList = document.select(".photolst .photo_wrap a")
             photoPageRawList.each { photoPage ->

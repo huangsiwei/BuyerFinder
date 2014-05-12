@@ -1,14 +1,18 @@
 package moviefan
 
 import buyerfinder.MovieReview
+import common.CommonService
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
 class MovieFanService {
 
+    CommonService commonService
+
     def getMovieReview(basicURL,pageCount) {
         def nextPageURL = basicURL + "?sort=time"
         (0..pageCount-1).each {
+            commonService.sleepRandomTime(500,2500)
             Document document = Jsoup.connect(nextPageURL).get()
             def nextPage = document.select("#paginator").select('.next').attr('href')
             nextPageURL = basicURL + nextPage
