@@ -22,7 +22,6 @@ class WatcherService {
             def productBlockList = productPageDoc.select(".item")
             productBlockList.each { productBlock ->
                 def productURL = productBlock.select("a").attr("href").replace("&","")
-                println(productURL)
                 productList << productURL
             }
         }

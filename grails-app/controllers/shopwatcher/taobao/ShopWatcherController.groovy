@@ -9,7 +9,7 @@ class ShopWatcherController {
     def index() {}
 
     def miniTest() {
-        def shopHotSellerDescUrl = "http://520smida.taobao.com/search.htm?v=1&scene=taobao_shop&orderType=hotsell_desc"
+        def shopHotSellerDescUrl = "http://nv-er.taobao.com/search.htm?search=y&orderType=hotsell_desc&v=1"
         watcherService.findShopProducts(shopHotSellerDescUrl)
     }
 }
