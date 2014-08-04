@@ -19,14 +19,14 @@ class DailySalesController {
     }
 
     def test() {
-        def startDate = commonService.getYesterDayTime(16,0,0)
+        def startDate = commonService.getYesterDayTime(17,0,0)
         def hotSellUrl = "http://nv-er.taobao.com/search.htm?spm=a1z10.1.0.0.sJSomD&search=y&orderType=hotsell_desc&v=1"
         def productList = watcherService.findShopProducts(hotSellUrl)
         println(productList)
         productList.each { productUrl ->
             def productName = dailyCountService.findProductName(productUrl)
             def salesInfoList = []
-            List resultList = dailyCountService.findProductTodaySalesInfo(productUrl,1,salesInfoList,startDate)
+            List resultList = dailyCountService.findProductTodaySalesInfo(productUrl,1,salesInfoList,startDate,productName)
             if (resultList.size() > 0) {
                 println("======================================")
                 println(productName)
