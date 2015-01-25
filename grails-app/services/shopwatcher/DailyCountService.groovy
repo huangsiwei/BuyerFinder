@@ -25,7 +25,9 @@ class DailyCountService {
         Document document = Jsoup.connect(productUrl).timeout(10000).get()
         def item_id = document.select("#J_Pine").attr("data-itemid")
         def seller_num_id = document.select("#J_Pine").attr("data-sellerid")
-        def sbn = document.select("#J_listBuyerOnView").attr("data-api").split("sbn=")[1].split("&")[0]
+//        println(document.select("#J_listBuyerOnView").attr("data-api"))
+//        println(productUrl)
+        def sbn = document.select("#J_listBuyerOnView").attr('data-api').split("sbn=")[1].split("&")[0]
         def shopName = document.select(".tb-shop-name dd").text()
         String salesInfoURL = basicUrl + "&bid_page=" + pageNum + "&page_size=15" + "&item_id=" + item_id + "&seller_num_id=" + seller_num_id + "&sbn=" + sbn + "&callback=Hub.data.records_reload&qq-pf-to=pcqq.c2c"
         def nextPageFlag = true

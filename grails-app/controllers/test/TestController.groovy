@@ -14,7 +14,7 @@ class TestController {
 
     def testCrawler() {
         def startTimeStr = "2014-07-25"
-        def startTime = commonService.setTime(startTimeStr, 0, 0, 0)
+        def startTime = commonService.setDateAndTime(startTimeStr, 0, 0, 0)
         crawlerService.crawlShopSalesInfo([], startTime)
     }
 

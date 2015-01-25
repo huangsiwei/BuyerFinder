@@ -14,7 +14,7 @@ class CommonService {
         return yesterDayTime
     }
 
-    def setTime(String dateStr, int hours, int min, int sec) {
+    def setDateAndTime(String dateStr, int hours, int min, int sec) {
         def date = Date.parse("yyyy-MM-dd", dateStr)
         date.setHours(hours)
         date.setMinutes(min)
