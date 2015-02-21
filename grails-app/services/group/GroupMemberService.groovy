@@ -1,5 +1,6 @@
 package group
 
+import base.CrawlerService
 import common.CommonService
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -7,6 +8,7 @@ import org.jsoup.nodes.Document
 class GroupMemberService {
 
     CommonService commonService
+    CrawlerService crawlerService
 
     def fetchGroupMemberByGroupId(long groupId) {
         def rawUrl = "http://www.douban.com/group/" + groupId + "/members?start="
@@ -28,5 +30,15 @@ class GroupMemberService {
             }
         }
         return groupMemberDouMailList
+    }
+
+    def fetchGroupsByCategory () {
+        def groupExplore
+        def groupCulture
+        def groupTravel
+        def groupEnt
+        def groupFashion
+        def groupLife
+        def groupTech
     }
 }

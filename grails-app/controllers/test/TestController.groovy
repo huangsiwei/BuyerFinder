@@ -10,7 +10,9 @@ class TestController {
     WatcherService watcherService
     CommonService commonService
 
-    def index() {}
+    def index() {
+
+    }
 
     def testCrawler() {
         def startTimeStr = "2014-07-25"
@@ -20,5 +22,13 @@ class TestController {
 
     def testCompareHotSell() {
         watcherService.compareShopHotSell(["女尔", "未闻"])
+    }
+
+    def tempIndex() {
+        println("OK!!")
+    }
+
+    def tempTest() {
+
     }
 }
